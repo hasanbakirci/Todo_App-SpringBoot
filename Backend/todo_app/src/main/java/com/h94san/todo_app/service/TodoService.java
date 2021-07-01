@@ -21,4 +21,20 @@ public class TodoService{
     public List<Todo> findAll(){
         return todoRepository.findAll();
     }
+
+    private Todo findById(int id){
+        return todoRepository.getById(id);
+    }
+
+    public void deleteTodo(int id){
+        todoRepository.deleteById(id);
+    }
+
+    public Todo updateTodo(int id,Todo todo){
+        Todo myTodo = findById(id);
+        myTodo.setTitle(todo.getTitle());
+        myTodo.setMessage(todo.getMessage());
+        myTodo.setCreatedDate(todo.getCreatedDate());
+        return save(myTodo);
+    }
 }
